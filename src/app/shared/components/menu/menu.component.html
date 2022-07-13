@@ -1,14 +1,14 @@
-<button mat-button (click)="sidenavService.close()">
+<button *ngIf="['xs', 'md'] | breakpoint | async" mat-button (click)="sidenavService.close()">
   close
 </button>
-<h1>Foxbel Music</h1>
+
+<app-logo [type]="'logo'" [size]="1"></app-logo>
 
 <h2>Mi Librería</h2>
 <div>Recientes</div>
 <div>Artistas</div>
 <div>Albums</div>
 
-<br>
 <br>
 <br>
 

@@ -1,5 +1,15 @@
 .header {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   width: 100%;
+}
+
+.side-action {
+  display: flex;
+  flex-direction: row;
+  
+  app-logo {
+    width: 72px;
+  }
 }
