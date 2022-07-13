@@ -1,0 +1,10 @@
+<mat-drawer-container autosize>
+  <mat-drawer [opened]="sidenavOpened$ | async" mode="side">
+    <app-menu></app-menu>
+  </mat-drawer>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
+</mat-drawer-container>

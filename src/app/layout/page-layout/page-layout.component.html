@@ -1,0 +1,11 @@
+<div class="header">
+  <button *ngIf="!(sidenavService.opened$ | async)" mat-button (click)="sidenavService.open()">
+    Menu
+  </button>
+  <ng-content select="[header]"></ng-content>
+</div>
+
+<div class="content">
+  <ng-content></ng-content>
+</div>
+
