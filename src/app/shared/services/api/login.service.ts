@@ -4,7 +4,9 @@ import { map, mapTo, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IGetTokenDeezer } from '../../interfaces/http/get-token-deezer.interface';
 import { HttpDeezerService } from '../http/http-deezer.service';
-
+/**
+ * @deprecated
+ */
 @Injectable({
   providedIn: 'root'
 })

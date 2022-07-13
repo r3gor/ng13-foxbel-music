@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs';
 import { LoginService } from 'src/app/shared/services/api/login.service';
-
+/**
+ * @deprecated
+ */
 @Component({
   selector: 'app-token',
   templateUrl: './token.component.html',

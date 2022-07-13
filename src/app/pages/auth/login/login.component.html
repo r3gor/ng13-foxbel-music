@@ -1,6 +1,15 @@
 <h1>Foxbel Music</h1>
 
-<button mat-button color="primary" (click)="login()"> 
+<button mat-button color="primary" (click)="onDeezerLogin()"> 
   <fa-icon [icon]="['fab', 'deezer']"></fa-icon>
   Sign in with Deezer
 </button>
+
+<button mat-button color="primary" (click)="reload()"> 
+  <fa-icon [icon]="['fab', 'deezer']"></fa-icon>
+  Reload user
+</button>
+
+<pre>
+  {{user$ | async | json}}
+</pre>
