@@ -31,7 +31,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/deezer/channel.html"
             ],
             "styles": [
               "src/styles.scss"
@@ -99,7 +100,9 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/channel.html",
+              "src/channel.html"
             ],
             "styles": [
               "src/styles.scss"

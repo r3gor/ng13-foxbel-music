@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faSquare, faCheckSquare } from '@fortawesome/free-solid-svg-icons';
 import { faSquare as farSquare, faCheckSquare as farCheckSquare } from '@fortawesome/free-regular-svg-icons';
-import { faStackOverflow, faGithub, faMedium } from '@fortawesome/free-brands-svg-icons';
+import { faStackOverflow, faGithub, faMedium, faDeezer } from '@fortawesome/free-brands-svg-icons';
 import { Initializer } from "./abstract-initializer";
 import { Observable, of } from "rxjs";
 
@@ -25,7 +25,8 @@ export class FontAwesomeInit implements Initializer {
       farCheckSquare,
       faStackOverflow,
       faGithub,
-      faMedium
+      faMedium,
+      faDeezer,
     );
   }
 
