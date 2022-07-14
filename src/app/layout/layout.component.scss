@@ -5,11 +5,14 @@
 }
 
 mat-drawer-container {
-  // height: calc(100vh - 100px);
   flex-grow: 1;
 }
 
 .footer {
   height: 100px;
   width: 100%;
+}
+
+app-music-player {
+  height: 100px;
 }

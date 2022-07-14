@@ -1,3 +1,5 @@
+@import 'breakpoints';
+
 :host {
   display: flex;
   flex-direction: row;
@@ -5,11 +7,17 @@
 }
 
 .content {
-  padding: 40px 32px 32px 32px;
+  padding: 16px 16px 16px 16px;
   color: white;
   position: relative;
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 
   &:before {
     content: "";
@@ -96,4 +104,20 @@ button:not(.icon) {
   font-weight: 400;
   font-size: 12px;
   line-height: 20px;
+}
+
+@media (min-width: map_get($global-breakpoint, md)) {
+  .content {
+    padding: 40px 32px 32px 32px;
+  }
+}
+
+@media (min-width: map_get($global-breakpoint, lg)) {
+  .content {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+  }
 }

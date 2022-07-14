@@ -1,28 +1,45 @@
 <app-page-layout>
 
   <ng-container header>
-    <mat-form-field class="search" appearance="outline">
-      <input autocomplete="off" placeholder="Buscar" matInput type="text" [(ngModel)]="search">
-      <fa-icon matSuffix [icon]="'magnifying-glass'"></fa-icon>
-    </mat-form-field>
-
-    <div *ngIf="user$ | async as user">{{ user.name }}</div>
+    <app-search class="search"></app-search>
+    <div class="user-widget" *ngIf="user$ | async as user">{{ user.name }}</div>
   </ng-container>
 
   <app-artist-banner></app-artist-banner>
 
   <h2 class="subtitle">Resultados</h2>
 
-  <div *ngIf="recent$ | async as items; else loading" class="song-card-container">
+  <!-- <pre>
+    {{items$ | async | json}}
+  </pre> -->
+
+  <div *ngIf="items$ | async as items; else loading" class="song-card-container">
     <ng-container *ngFor="let item of items">
-      <app-song-card
-      [title]="item.title"
-      [subtitle]="item.artist.name"
-      [imgSrc]="item.album.cover"
-      ></app-song-card>
+      <ng-container [ngSwitch]="item.type">
+
+        <app-song-card *ngSwitchCase="'track'"
+        [title]="item.title"
+        [subtitle]="item.artist.name"
+        [imgSrc]="item.album.cover"
+        (click)="play(item)"
+        ></app-song-card>
+
+        <app-song-card *ngSwitchCase="'artist'"
+        [title]="item.name"
+        [subtitle]="item.type | titlecase"
+        [imgSrc]="item.picture"
+        ></app-song-card>
+
+        <app-song-card *ngSwitchCase="'album'"
+        [title]="item.title"
+        [subtitle]="item.artist.name"
+        [imgSrc]="item.cover"
+        ></app-song-card>
+
+      </ng-container>
     </ng-container>
   </div>
 
-  <ng-template #loading>Loading...</ng-template>
+  <ng-template #loading>Sin resultados</ng-template>
 
 </app-page-layout>

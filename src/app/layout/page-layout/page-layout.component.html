@@ -1,6 +1,6 @@
 <div class="header">
-  <div class="side-action" *ngIf="!(sidenavService.opened$ | async)">
-    <button mat-icon-button (click)="sidenavService.open()">
+  <div *ngIf="['xs', 'md'] | breakpoint | async" class="side-action">
+    <button *ngIf="!(sidenavService.opened$ | async)" mat-icon-button (click)="sidenavService.open()">
       <fa-icon [icon]="'bars'"></fa-icon>
     </button>
     <app-logo [type]="'icon'" [size]="1"></app-logo>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { BreakpointService } from '../../core/services/breakpoint/breakpoint.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,7 @@ export class SidenavService {
     this.opened.next(false);
   }
 
-  constructor() { }
+  constructor(private breakpointService: BreakpointService) {
+    this.breakpointService.$size.subscribe( b => b=='xs'? this.close() : this.open()  )
+  }
 }

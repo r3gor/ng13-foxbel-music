@@ -9,6 +9,8 @@ import { ArtistBannerComponent } from './components/artist-banner/artist-banner.
 import { SongCardComponent } from './components/song-card/song-card.component';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './components/search/search.component';
+import { FormsModule } from '@angular/forms';
+import { MusicPlayerComponent } from './components/music-player/music-player.component';
 
 
 
@@ -18,7 +20,8 @@ import { SearchComponent } from './components/search/search.component';
     LogoComponent,
     ArtistBannerComponent,
     SongCardComponent,
-    SearchComponent
+    SearchComponent,
+    MusicPlayerComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +29,8 @@ import { SearchComponent } from './components/search/search.component';
     MaterialModule,
     CoreModule,
     RouterModule,
+    FormsModule,
+    FontAwesomeModule,
   ],
   exports: [
     FontAwesomeModule,
@@ -33,6 +38,8 @@ import { SearchComponent } from './components/search/search.component';
     LogoComponent,
     ArtistBannerComponent,
     SongCardComponent,
+    SearchComponent,
+    MusicPlayerComponent,
   ]
 })
 export class SharedModule { }

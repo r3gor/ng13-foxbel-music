@@ -5,6 +5,7 @@ import { PageLayoutComponent } from './page-layout/page-layout.component';
 import { MaterialModule } from '../material/material.module';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { CoreModule } from '../core/core.module';
 
 
 
@@ -18,6 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     MaterialModule,
     RouterModule,
     SharedModule,
+    CoreModule,
   ],
   exports: [
     PageLayoutComponent,

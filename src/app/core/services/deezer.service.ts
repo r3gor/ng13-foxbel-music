@@ -8,6 +8,7 @@ import { IArtist } from '../interfaces/artist.interface';
 import { IAlbum } from '../interfaces/album.interface';
 import { ITrack } from '../interfaces/track.interface';
 import { IPlaylist } from '../interfaces/playlist.interface';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -65,7 +66,16 @@ export class DeezerService {
   }
 
   getTracks() {
-    return this.deezerSdk.api<IGetItems<ITrack>>(`/user/me/albums`).pipe(
+    return this.deezerSdk.api<IGetItems<ITrack>>(`/user/me/tracks`).pipe(
+      map(res => res.data),
+    );
+  }
+
+  search(query: string) {
+    const params = new HttpParams()
+    .set('q', query);
+
+    return this.deezerSdk.api<IGetItems<any>>(`/search?${params.toString()}`).pipe(
       map(res => res.data),
     );
   }

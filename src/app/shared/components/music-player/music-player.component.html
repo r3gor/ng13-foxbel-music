@@ -1,0 +1,22 @@
+<ng-container *ngIf="track$ | async as track; else noTrack">
+
+  <img [src]="track.album['cover']">
+  <div class="bar">
+    <div class="description">
+      {{track.title}} <br> Artista: {{track.artist.name}}
+    </div>
+    <div class="player-ctrl">
+      <button mat-button>Play</button>
+    </div>
+    <div class="volume-ctrl">
+      <button mat-button>Volumen</button>
+    </div>
+  </div>
+
+</ng-container>
+
+<ng-template #noTrack>
+  <div class="no-track">
+    No track selected
+  </div>
+</ng-template>

@@ -1,4 +1,4 @@
-<img class="button-play" src="https://picsum.photos/250/250" alt="">
+<img *ngIf="['lg'] | breakpoint | async" class="button-play" src="https://picsum.photos/250/250" alt="">
 
 <section class="content">
   <div class="content__header">

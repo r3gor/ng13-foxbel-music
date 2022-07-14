@@ -13,7 +13,7 @@ export class MenuComponent implements OnInit {
 
   libraryItems = [
     {
-      key: 'recent',
+      key: 'recents',
       title: 'Recientes',
     },
     {
@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit {
       title: 'Canciones',
     },
     {
-      key: 'radio',
+      key: 'radios',
       title: 'Estaciones',
     }
   ]

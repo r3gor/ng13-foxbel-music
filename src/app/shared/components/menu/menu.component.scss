@@ -1,5 +1,7 @@
+@import 'breakpoints';
+
 :host {
-  --pl: 40px
+  --pl: 20px
 }
 
 :host {
@@ -8,7 +10,7 @@
   background-color: #662323;
   color: white;
   height: 100%;
-  width: 330px;
+  width: 160px;
 }
 
 .close-sidenav {
@@ -18,8 +20,8 @@
 app-logo {
   margin-top: 50px;
   margin-bottom: 30px;
-  width: 250px;
   align-self: center;
+  cursor: pointer;
 }
 
 
@@ -62,7 +64,7 @@ app-logo {
         color: #E86060;
         font-weight: 700;
         display: flex;
-        gap: 35px;
+        gap: calc(var(--pl) - 5px);
   
         &:before {
           content: '';
@@ -71,6 +73,29 @@ app-logo {
         }
       }
     }
+  }  
+}
+
+@media (min-width: map_get($global-breakpoint, md)) {
+  :host {
+    --pl: 40px
   }
   
+  :host {
+    width: 280px;
+  }
+  app-logo {
+    width: 230px;
+  }
+}
+
+@media (min-width: map_get($global-breakpoint, lg)) {
+  
+  :host {
+    width: 330px;
+  }
+
+  app-logo {
+    width: 250px;
+  }
 }

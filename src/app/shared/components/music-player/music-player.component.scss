@@ -1,0 +1,23 @@
+:host, .bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #EB5757;
+  color: white;
+  height: 100%;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+.bar {
+  flex-grow: 1;
+}
+
+.no-track {
+  padding-left: 16px;
+  font-weight: 600;
+}

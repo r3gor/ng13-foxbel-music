@@ -1,1 +1,4 @@
-<p>search works!</p>
+<mat-form-field class="search" appearance="outline">
+  <input (keyup.enter)="submit()" autocomplete="off" placeholder="Buscar" matInput type="text" [(ngModel)]="searchValue">
+  <fa-icon matSuffix [icon]="'magnifying-glass'"></fa-icon>
+</mat-form-field>
