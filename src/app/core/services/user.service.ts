@@ -23,7 +23,6 @@ export class UserService {
       tap(data => {
         if (data) this.user.next(data);
       }),
-      tap(res => console.log({fetch: res})),
       map(data => !!data),
     );
   }

@@ -1,9 +1,9 @@
 import { Inject, Injectable } from "@angular/core";
 import { map, Observable, of, tap, switchMap } from 'rxjs';
 import { Initializer } from "./abstract-initializer";
-import { SessionService } from '../core/services/session.service';
-import { LOG } from "../core/utils/log.utils";
-import { UserService } from '../core/services/user.service';
+import { SessionService } from '../services/session.service';
+import { LOG } from "../utils/log.utils";
+import { UserService } from '../services/user.service';
 
 
 @Injectable({

@@ -4,12 +4,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { makeFactory } from './initializers/factory';
-import { FontAwesomeInit } from './initializers/font-awesome.init';
+import { makeFactory } from './core/initializers/factory';
+import { FontAwesomeInit } from './core/initializers/font-awesome.init';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
-import { SessionRecoverInit } from './initializers/session-recover.init';
+import { SessionRecoverInit } from './core/initializers/session-recover.init';
 
 @NgModule({
   declarations: [
