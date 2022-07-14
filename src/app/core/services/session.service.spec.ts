@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HttpDeezerService } from './http-deezer.service';
+import { SessionService } from './session.service';
 
-describe('DeezerService', () => {
-  let service: HttpDeezerService;
+describe('SessionService', () => {
+  let service: SessionService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(HttpDeezerService);
+    service = TestBed.inject(SessionService);
   });
 
   it('should be created', () => {

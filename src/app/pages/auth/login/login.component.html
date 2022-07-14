@@ -1,15 +1,14 @@
-<h1>Foxbel Music</h1>
+<app-logo></app-logo>
 
-<button mat-button color="primary" (click)="onDeezerLogin()"> 
+<button mat-button color="warn" (click)="onDeezerLogin()"> 
   <fa-icon [icon]="['fab', 'deezer']"></fa-icon>
   Sign in with Deezer
 </button>
 
-<button mat-button color="primary" (click)="reload()"> 
-  <fa-icon [icon]="['fab', 'deezer']"></fa-icon>
-  Reload user
-</button>
-
-<pre>
-  {{user$ | async | json}}
-</pre>
+<ng-container *ngIf="login$!==undefined ">
+  <ng-container *ngIf="{login: login$ | async} as state">
+    <ng-container *ngIf="state.login"> Success! </ng-container>
+    <ng-container *ngIf="state.login === null"> loading... </ng-container>
+    <ng-container *ngIf="state.login === false"> Login error! </ng-container>
+  </ng-container>
+</ng-container>

@@ -9,6 +9,7 @@ import { FontAwesomeInit } from './initializers/font-awesome.init';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from './layout/layout.module';
+import { SessionRecoverInit } from './initializers/session-recover.init';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,12 @@ import { LayoutModule } from './layout/layout.module';
       provide: APP_INITIALIZER,
       useFactory: makeFactory<FontAwesomeInit>(),
       deps: [FontAwesomeInit],
+      multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: makeFactory<SessionRecoverInit>(),
+      deps: [SessionRecoverInit],
       multi: true
     },
   ],

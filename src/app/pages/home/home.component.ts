@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/core/services/user.service';
+import { DeezerService } from '../../core/services/deezer.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,13 @@ export class HomeComponent implements OnInit {
 
   search: string = '';
 
-  constructor() { }
+  user$ = this.userService.user$;
+
+  recent$ = this.deezerService.getHistory();
+
+  constructor(
+    private deezerService: DeezerService,
+    private userService: UserService) { }
 
   ngOnInit(): void {
   }

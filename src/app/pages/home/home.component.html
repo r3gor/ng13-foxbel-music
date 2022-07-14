@@ -6,21 +6,23 @@
       <fa-icon matSuffix [icon]="'magnifying-glass'"></fa-icon>
     </mat-form-field>
 
-    <div>Roger R.</div>
+    <div *ngIf="user$ | async as user">{{ user.name }}</div>
   </ng-container>
 
   <app-artist-banner></app-artist-banner>
 
   <h2 class="subtitle">Resultados</h2>
 
-  <div class="song-card-container">
-    <app-song-card></app-song-card>
-    <app-song-card></app-song-card>
-    <app-song-card></app-song-card>
-    <app-song-card></app-song-card>
-    <app-song-card></app-song-card>
-    <app-song-card></app-song-card>
-    <app-song-card></app-song-card>
+  <div *ngIf="recent$ | async as items; else loading" class="song-card-container">
+    <ng-container *ngFor="let item of items">
+      <app-song-card
+      [title]="item.title"
+      [subtitle]="item.artist.name"
+      [imgSrc]="item.album.cover"
+      ></app-song-card>
+    </ng-container>
   </div>
+
+  <ng-template #loading>Loading...</ng-template>
 
 </app-page-layout>

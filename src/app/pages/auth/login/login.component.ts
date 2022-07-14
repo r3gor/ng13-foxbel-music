@@ -1,12 +1,12 @@
 declare const DZ: any;
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 import { bindCallback, Observable } from 'rxjs';
-import { IAuth } from 'src/app/shared/interfaces/auth.interface';
-import { LoginService } from 'src/app/shared/services/api/login.service';
-import { DeezerSdkService } from 'src/app/shared/services/deezer-sdk/deezer-sdk.service';
-import { DeezerService } from 'src/app/shared/services/deezer.service';
-import { IUser } from '../../../shared/interfaces/user.interface';
+import { IAuth } from 'src/app/core/interfaces/auth.interface';
+import { IUser } from 'src/app/core/interfaces/user.interface';
+import { DeezerService } from 'src/app/core/services/deezer.service';
+import { SessionService } from '../../../core/services/session.service';
 
 @Component({
   selector: 'app-login',
@@ -15,20 +15,21 @@ import { IUser } from '../../../shared/interfaces/user.interface';
 })
 export class LoginComponent {
 
-  user$?: Observable<IUser>;
-  
-  reload() {
-    this.user$ = this.deezerService.getMe();
-  }
+  login$: Observable<boolean> | undefined = undefined; 
 
   constructor(
-    private loginService: LoginService,
-    private deezerService: DeezerService) {
+    private sessionService: SessionService,
+    private router: Router,
+    private ngZone: NgZone
+    ) {
   }
 
   onDeezerLogin() {
-    this.deezerService.login().subscribe(res => {    
-      this.user$ = this.deezerService.getMe();
+    this.login$ = this.sessionService.login();
+    this.login$.subscribe(success => { 
+      if (success) this.ngZone.run(
+        () => this.router.navigate(['/']
+      ))
     })
   }
 

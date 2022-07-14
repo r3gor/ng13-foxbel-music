@@ -1,7 +1,0 @@
-<ng-container *ngIf="{success: successLogin$ | async} as data">
-
-  <div *ngIf="data.success === undefined"> Loading... </div>
-  <div *ngIf="data.success === false"> Login error, try again :( </div>
-  <div *ngIf="data.success"> Redirecting... </div>
-
-</ng-container>

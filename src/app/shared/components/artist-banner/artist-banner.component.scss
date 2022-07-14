@@ -33,11 +33,12 @@
 
   &__actions {
     display: flex;
+    align-items: center;
     gap: 20px;
   }
 }
 
-button {
+button:not(.icon) {
   border-radius: 100px;
   -webkit-border-radius: 100px;
   -moz-border-radius: 100px;

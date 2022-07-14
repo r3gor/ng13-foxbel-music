@@ -1,25 +1,35 @@
 declare const DZ: any;
 
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { IAuth } from '../../interfaces/auth.interface';
+import { ILoginStatus } from '../../interfaces/login-status.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeezerSdkService {
 
-  constructor() { }
+  constructor(private ngZone: NgZone) { }
 
-  login(perms = 'basic_access,email') {
+  login(perms: string) {
     return new Observable((observer: Observer<IAuth>) => {
       DZ.login((response: IAuth) => {
+        
         if (response.authResponse) {
           observer.next(response);
         } else {
           observer.error(response);
         }
       }, {perms})
+    });
+  }
+
+  getLoginStatus(){
+    return new Observable((observer: Observer<ILoginStatus>) => {
+      DZ.getLoginStatus((response: ILoginStatus) => {
+        observer.next(response);
+      });
     });
   }
 
