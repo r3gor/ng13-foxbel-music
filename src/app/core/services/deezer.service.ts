@@ -7,6 +7,7 @@ import { IHistory } from '../interfaces/history.interface';
 import { IArtist } from '../interfaces/artist.interface';
 import { IAlbum } from '../interfaces/album.interface';
 import { ITrack } from '../interfaces/track.interface';
+import { IPlaylist } from '../interfaces/playlist.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +30,17 @@ export class DeezerService {
       tap(console.log)
     );
   }
-  
+
+  getPlaylists() {
+    // https://api.deezer.com/user/5046451522/recommendations/artists
+    return this.deezerSdk.api<IGetItems<IPlaylist>>(`/user/me/playlists`).pipe(
+      map(res => res.data),
+    );
+  }
+
   getRecomendations(type: 'albums' | 'releases' | 'artists' | 'playlists' | 'track' | 'radios' | 'track' ) {
     // https://api.deezer.com/user/5046451522/recommendations/artists
-    return this.deezerSdk.api<IGetItems<IHistory | any>>(`/user/me/history/${type}`).pipe(
+    return this.deezerSdk.api<IGetItems<IHistory>>(`/user/me/history/${type}`).pipe(
       map(res => res.data),
     );
   }

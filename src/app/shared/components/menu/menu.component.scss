@@ -51,6 +51,12 @@ app-logo {
     .item {
       font-weight: 400;
       font-size: 16px;
+      color: white !important;
+      text-decoration: none !important;
+      
+      &:hover {
+        text-decoration: underline !important;
+      }
   
       &.selected {
         color: #E86060;

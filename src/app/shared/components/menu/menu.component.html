@@ -6,22 +6,33 @@ mat-icon-button class="close-sidenav"
 
 <app-logo [type]="'logo'" [size]="1"></app-logo>
 
-<div class="sections-container">
+<div *ngIf="selected$ | async as selected" class="sections-container">
   <section class="section">
     <div class="subtitle">Mi Librería</div>
     <div class="list">
-      <a class="item selected">Recientes</a>
-      <a class="item">Artistas</a>
-      <a class="item">Albums</a>
+      <a *ngFor="let item of libraryItems" 
+      class="item" 
+      [class.selected]="item.key===selected"
+      [routerLink]="['/']" [queryParams]="{ library: item.key }">
+        {{ item.title }}
+      </a>
     </div>
   </section>
     
-  <section class="section">
+  <section *ngIf="playlist$ | async as playlists" class="section">
     <div class="subtitle">Playlist</div>
     <div class="list">
-      <a class="item selected">Metal</a>
-      <a class="item">Nu-Metal</a>
-      <a class="item">Punk</a>
+      <a *ngFor="let item of playlists" 
+      class="item"
+      [class.selected]="item.id===selected"
+      [routerLink]="['/']" [queryParams]="{ playlist: item.id }">
+        {{ item.title }}
+      </a>
     </div>
   </section>
+
+  <pre>
+    {{selected$ | async | json}}
+  </pre>
+
 </div>

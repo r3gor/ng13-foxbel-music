@@ -7,6 +7,8 @@ import { LogoComponent } from './components/logo/logo.component';
 import { CoreModule } from '../core/core.module';
 import { ArtistBannerComponent } from './components/artist-banner/artist-banner.component';
 import { SongCardComponent } from './components/song-card/song-card.component';
+import { RouterModule } from '@angular/router';
+import { SearchComponent } from './components/search/search.component';
 
 
 
@@ -15,13 +17,15 @@ import { SongCardComponent } from './components/song-card/song-card.component';
     MenuComponent,
     LogoComponent,
     ArtistBannerComponent,
-    SongCardComponent
+    SongCardComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
     MaterialModule,
     CoreModule,
+    RouterModule,
   ],
   exports: [
     FontAwesomeModule,
