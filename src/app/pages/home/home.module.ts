@@ -7,6 +7,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { CoreModule } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { LayoutModule } from '../../layout/layout.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { LayoutModule } from '../../layout/layout.module';
     CoreModule,
     SharedModule,
     LayoutModule,
+    FormsModule,
   ]
 })
 export class HomeModule { }
