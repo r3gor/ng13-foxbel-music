@@ -1,0 +1,22 @@
+:host {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 160px;
+}
+
+.description {
+  &__title {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    color: #555555;
+  }
+
+  &__artist {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #828282;
+  }
+}

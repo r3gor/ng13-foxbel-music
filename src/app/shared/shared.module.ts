@@ -5,13 +5,17 @@ import { MenuComponent } from './components/menu/menu.component';
 import { MaterialModule } from '../material/material.module';
 import { LogoComponent } from './components/logo/logo.component';
 import { CoreModule } from '../core/core.module';
+import { ArtistBannerComponent } from './components/artist-banner/artist-banner.component';
+import { SongCardComponent } from './components/song-card/song-card.component';
 
 
 
 @NgModule({
   declarations: [
     MenuComponent,
-    LogoComponent
+    LogoComponent,
+    ArtistBannerComponent,
+    SongCardComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +27,8 @@ import { CoreModule } from '../core/core.module';
     FontAwesomeModule,
     MenuComponent,
     LogoComponent,
+    ArtistBannerComponent,
+    SongCardComponent,
   ]
 })
 export class SharedModule { }

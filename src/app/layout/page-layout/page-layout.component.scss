@@ -1,6 +1,8 @@
 :host {
   padding: 30px 40px;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .header {

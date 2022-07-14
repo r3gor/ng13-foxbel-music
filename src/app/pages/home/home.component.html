@@ -2,11 +2,25 @@
 
   <ng-container header>
     <mat-form-field class="search" appearance="outline">
-      <!-- <mat-label>Buscar</mat-label> -->
       <input autocomplete="off" placeholder="Buscar" matInput type="text" [(ngModel)]="search">
       <fa-icon matSuffix [icon]="'magnifying-glass'"></fa-icon>
     </mat-form-field>
+
     <div>Roger R.</div>
   </ng-container>
+
+  <app-artist-banner></app-artist-banner>
+
+  <h2 class="subtitle">Resultados</h2>
+
+  <div class="song-card-container">
+    <app-song-card></app-song-card>
+    <app-song-card></app-song-card>
+    <app-song-card></app-song-card>
+    <app-song-card></app-song-card>
+    <app-song-card></app-song-card>
+    <app-song-card></app-song-card>
+    <app-song-card></app-song-card>
+  </div>
 
 </app-page-layout>
