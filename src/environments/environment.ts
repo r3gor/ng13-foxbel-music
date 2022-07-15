@@ -5,21 +5,6 @@
 export const environment = {
   production: false,
 
-  API: {
-    DEEZER: {
-      AUTH_URL: "https://connect.deezer.com/oauth/auth.php",
-      TOKEN_URL: "https://connect.deezer.com/oauth/access_token.php",
-    }
-  },
-  
-  CONFIG: {
-    DEEZER: {
-      APP_ID: 551022,
-      APP_SECRET: "0698413d96834ce9769d7d00aef642f6", // FIXME: Move to backend (INSECURED) 
-      REDIRECT_URI: "http://localhost:4200/auth/access-gen",
-      PERMS: "basic_access,email"
-    }
-  }
 };
 
 /*
