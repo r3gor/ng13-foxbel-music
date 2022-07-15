@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { of, switchMap, Observable } from 'rxjs';
 import { MusicPlayerService } from '../../shared/services/music-player.service';
 import { ContentObserver } from '@angular/cdk/observers';
+import { DeezerSdkService } from '../../core/services/deezer-sdk/deezer-sdk.service';
+import { ItrackItem } from 'src/app/core/interfaces/track.interface';
 
 @Component({
   selector: 'app-home',
@@ -43,8 +45,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private playerService: MusicPlayerService,
+    private musicPlayerService: MusicPlayerService,
     private deezerService: DeezerService,
+    private deezerSdk: DeezerSdkService,
     private userService: UserService) { }
 
   ngOnInit(): void {
@@ -52,8 +55,12 @@ export class HomeComponent implements OnInit {
 
   play(item: any) {
     console.log("play: ", item);
-    this.playerService.loadTrack(item.id).subscribe(
-      res => res && console.log({ track: res })
-    );
+
+    this.deezerSdk.api<ItrackItem>(`/track/${item.id}`).subscribe(
+      track => this.musicPlayerService.openFile(track, 0)
+    )
+    // this.playerService.(item.id).subscribe(
+    //   res => res && console.log({ track: res })
+    // );
   }
 }

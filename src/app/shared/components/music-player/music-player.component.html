@@ -1,15 +1,39 @@
-<ng-container *ngIf="track$ | async as track; else noTrack">
-
+<ng-container *ngIf="player.currentFile.file as track; else noTrack">
   <img [src]="track.album['cover']">
   <div class="bar">
     <div class="description">
-      {{track.title}} <br> Artista: {{track.artist.name}}
+      <div class="title"> {{track.title}} </div>
+      <div class="subtitle">
+        Artista: {{track.artist.name}}
+      </div>
     </div>
-    <div class="player-ctrl">
-      <button mat-button>Play</button>
+    <div *ngIf="audioService.getState() | async as state" class="player-ctrl">
+      <button mat-icon-button>
+        <fa-icon [icon]="['fas', 'backward-step']"></fa-icon>
+      </button>
+      <button *ngIf="!state?.playing" (click)="player.play()" mat-mini-fab class="main">
+        <fa-icon [icon]="['fas', 'play']"></fa-icon>
+      </button>
+      <button *ngIf="state?.playing" (click)="player.pause()" mat-mini-fab class="main">
+        <fa-icon [icon]="['fas', 'pause']"></fa-icon>
+      </button>
+      <button (click)="player.pause()" mat-icon-button>
+        <fa-icon [icon]="['fas', 'forward-step']"></fa-icon>
+      </button>
     </div>
     <div class="volume-ctrl">
-      <button mat-button>Volumen</button>
+      <button mat-icon-button>
+        <fa-icon [icon]="['fas', 'volume-high']" size="1x"></fa-icon>
+      </button>
+      <mat-slider
+      class="example-margin"
+      [max]="100"
+      [min]="0"
+      [step]="1"
+      [thumbLabel]="false"
+      [(ngModel)]="volume"
+      aria-labelledby="example-name-label">
+  </mat-slider>
     </div>
   </div>
 

@@ -1,4 +1,6 @@
-:host, .bar {
+@import "breakpoints";
+
+:host {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -6,6 +8,25 @@
   background-color: #EB5757;
   color: white;
   height: 100%;
+  overflow: hidden;
+}
+
+.bar {
+  display: grid;
+  grid-template-rows: 24px auto;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-items: center;
+
+  .description {
+    grid-row: span 2;
+    grid-column: 1;
+  }
+
+  .player-ctrl {
+    grid-column: 2;
+    grid-row: 2;
+  }
 }
 
 img {
@@ -15,9 +36,70 @@ img {
 
 .bar {
   flex-grow: 1;
+  padding-left: 20px;
+  padding-right: 30px;
 }
+
+.title {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.player-ctrl {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background-color: transparent !important;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  font-size: 16px;
+
+  &:host(.main) {
+    box-shadow: none !important;
+  }
+  
+  &.main {
+    font-size: 18px;
+    background: #FF7676;
+  }
+}
+
 
 .no-track {
   padding-left: 16px;
   font-weight: 600;
+}
+
+
+@media (min-width: map_get($global-breakpoint, md)) {
+
+  .player-ctrl {
+    gap: 20px;
+  }
+
+  button.main {
+    width: 60px;
+    height: 60px;
+  }
+
+  .bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

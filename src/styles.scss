@@ -39,6 +39,14 @@ $foxbel-music-theme: mat.define-light-theme((
  *  CUSTOM STYLES
  *  --------------------------------------------------------- */
 
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
 /* Quicksand Font*/
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
