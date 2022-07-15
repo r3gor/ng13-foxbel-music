@@ -18,13 +18,23 @@
   <div id="dz-root"></div>
   <div id="player"></div>
   <script>
-    DZ.init({
-      // appId  : '551022',
-      // channelUrl : 'http://localhost:4200/assets/deezer/channel.html',
-      
-      appId  : '551702',
-      channelUrl : 'https://n13-foxbel-music.web.app/assets/deezer/channel.html',
-    });
+    console.log("HOST:", window.location.hostname)
+    
+    const local = window.location.hostname == "localhost";
+
+    deezerConfig = {
+      "LOCAL": {
+        appId  : '551022',
+        channelUrl : 'http://localhost:4200/assets/deezer/channel.html',
+      },
+      "DEV": {
+        appId  : '551702',
+        channelUrl : 'https://n13-foxbel-music.web.app/assets/deezer/channel.html',
+      }
+    }
+
+    DZ.init(deezerConfig[local? "LOCAL":"DEV"]);
+  
   </script>
   <app-root></app-root>
 </body>
