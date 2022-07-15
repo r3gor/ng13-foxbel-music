@@ -4,82 +4,54 @@ import { DeezerSdkService } from '../../core/services/deezer-sdk/deezer-sdk.serv
 import { Observable, BehaviorSubject, tap } from 'rxjs';
 import { AudioService } from './audio.service';
 import { StreamState } from '../interfaces/stream-state.interface';
+import { ThisReceiver } from '@angular/compiler';
+import { NgAudio } from '../../core/utils/audio.utils';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MusicPlayerService {
 
-  files: Array<any> = [];
-  state!: StreamState;
-  currentFile: any = {};
+  audio = new NgAudio();  
+  index: number = 0
+  tracks: any[] = []
 
-  constructor(private audioService: AudioService) {
-    // listen to stream state
-    this.audioService.getState()
-    .subscribe(state => {
-      this.state = state;
-    });
+  constructor() {
   }
 
-  getTrack() {
-    return this.files[this.currentFile.index || 0]
-  }
+  /**
+   * 
+   * @param tracks cada objeto debe tener la url en la key 'preview'
+   */
+  setTracks(tracks: any[]) {
+    this.tracks = tracks;
+    this.index = 0;
+    this.audio.load(tracks[0].preview);
+    this.audio.ended$.subscribe(end => end && this.next());
+  } 
 
-  setFiles(files: any[]){
-    this.files = files;
-  }
-
-  playStream(url: string) {
-    this.audioService.playStream(url)
-    .subscribe(events => {
-      // listening for fun here
-    });
-  }
-
-  openFile(file: any, index: number) {
-    console.log({file, index});
-    
-    this.currentFile = { index, file };
-    this.audioService.stop();
-    this.playStream(file.preview);
-  }
-
-  pause() {
-    this.audioService.pause();
+  get currTrack() {
+    return this.tracks[this.index];
   }
 
   play() {
-    console.log("play");
-    
-    this.audioService.play();
+    this.audio.play();
   }
 
-  stop() {
-    this.audioService.stop();
+  pause() {
+    this.audio.pause();
+  }
+
+  prev() {
+    if(this.index==0) return
+    this.index--;
+    this.audio.load(this.currTrack.preview)
   }
 
   next() {
-    const index = this.currentFile.index + 1;
-    const file = this.files[index];
-    this.openFile(file, index);
+    if(this.index==this.tracks.length-1) return
+    this.index++;
+    this.audio.load(this.currTrack.preview)
   }
 
-  previous() {
-    const index = this.currentFile.index - 1;
-    const file = this.files[index];
-    this.openFile(file, index);
-  }
-
-  isFirstPlaying() {
-    return this.currentFile.index === 0;
-  }
-
-  isLastPlaying() {
-    return this.currentFile.index === this.files.length - 1;
-  }
-
-  onSliderChangeEnd(change: any) {
-    this.audioService.seekTo(change.value);
-  }
 }

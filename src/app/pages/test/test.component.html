@@ -1,0 +1,18 @@
+
+
+<h1> Tests </h1>
+
+
+<button mat-button (click)="loadTracks()">Load Tracks</button>
+<button mat-button (click)="prev()">prev</button>
+<button mat-button (click)="play()">play</button>
+<button mat-button (click)="pause()">pause</button>
+<button mat-button (click)="next()">next</button>
+
+<h2>Data</h2>
+<pre>
+  Duration:   {{musicService.audio.duration}}
+  Time:       {{musicService.audio.time$ | async | json}}
+  Playing:    {{musicService.audio.playing$ | async | json}}
+  Ended:      {{musicService.audio.ended$ | async | json}}
+</pre>

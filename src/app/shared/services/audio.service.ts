@@ -1,12 +1,13 @@
+/**
+ * from: https://github.com/imsingh/auth0-audio
+ */
+
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import * as moment from 'moment';
 import { StreamState } from '../interfaces/stream-state.interface';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class AudioService {
   private stop$ = new Subject();
   private audioObj = new Audio();
@@ -24,11 +25,12 @@ export class AudioService {
   };
 
   private streamObservable(url: string) {
-    return new Observable(observer => {
+    this.stop();
+    return new Observable(observer => { 
       // Play audio
       this.audioObj.src = url;
       this.audioObj.load();
-      this.audioObj.play();
+      // this.audioObj.play();
   
       const handler = (event: Event) => {
         this.updateStateEvents(event);
@@ -37,6 +39,10 @@ export class AudioService {
   
       this.addEvents(this.audioObj, this.audioEvents, handler);
       return () => {
+        // call when stop()
+        // this callback is called when the observable finish
+        // method stop no debe ser llamado por cliente
+        console.log("CALLBACK STREAMOBSERVABLE")
         // Stop Playing
         this.audioObj.pause();
         this.audioObj.currentTime = 0;
@@ -72,7 +78,8 @@ export class AudioService {
     this.audioObj.pause();
   }
 
-  stop() {
+  private stop() {
+    // method stop no debe ser llamado por cliente
     this.stop$.next(1);
   }
 
@@ -88,7 +95,7 @@ export class AudioService {
   private stateChange: BehaviorSubject<StreamState> = new BehaviorSubject(this.state);
 
   private updateStateEvents(event: Event): void {
-    console.log({event: event.type});
+    // console.log({event: event.type});
     
     switch (event.type) {
       case 'canplay':

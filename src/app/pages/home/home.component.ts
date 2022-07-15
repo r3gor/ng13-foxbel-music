@@ -56,11 +56,31 @@ export class HomeComponent implements OnInit {
   play(item: any) {
     console.log("play: ", item);
 
-    this.deezerSdk.api<ItrackItem>(`/track/${item.id}`).subscribe(
-      track => this.musicPlayerService.openFile(track, 0)
-    )
-    // this.playerService.(item.id).subscribe(
-    //   res => res && console.log({ track: res })
-    // );
+    if(item.type == 'track'){
+      if(item.preview) {
+        this.musicPlayerService.setTracks([item]);
+      } else {
+        this.deezerSdk.api<{data: ItrackItem[]}>(`/track/${item.id}`).subscribe(
+          res => {
+            this.musicPlayerService.setTracks([res])
+          }
+        )
+
+      }
+    }
+    else if(item.tracklist){
+      const path = item.tracklist.slice("https://www.deezer.com".length);
+      console.log(path);
+      this.deezerSdk.api<{data: ItrackItem[]}>(path).subscribe(
+        res => {
+          console.log(res)
+          const tracks = res.data;
+          if(item.type == 'album') {
+            tracks.map(t => t.album = item);
+          }
+          this.musicPlayerService.setTracks(tracks)
+        }
+      )
+    }
   }
 }

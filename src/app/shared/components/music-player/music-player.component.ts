@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { StreamState } from '../../interfaces/stream-state.interface';
-import { AudioService } from '../../services/audio.service';
 import { MusicPlayerService } from '../../services/music-player.service';
 
 @Component({
@@ -11,19 +10,15 @@ import { MusicPlayerService } from '../../services/music-player.service';
 export class MusicPlayerComponent implements OnInit {
 
   volume = 50;
-  state!: StreamState;
 
-  constructor(
-    public audioService: AudioService,
-    public player: MusicPlayerService) {
-      this.audioService.getState()
-      .subscribe(state => {
-        // console.log({state});
-        this.state = state;
-      });
-    }
+  constructor(public player: MusicPlayerService) {
+    this.updateVolume();
+  }
 
   ngOnInit(): void {
   }
 
+  updateVolume() {
+    this.player.audio.setVolume(this.volume/100)
+  }
 }
