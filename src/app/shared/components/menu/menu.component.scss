@@ -9,8 +9,9 @@
   flex-direction: column;
   background-color: #662323;
   color: white;
-  height: 100%;
+  min-height: 100%;
   width: 160px;
+  padding-bottom: 24px;
 }
 
 .close-sidenav {
