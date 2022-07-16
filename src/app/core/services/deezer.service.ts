@@ -21,6 +21,10 @@ export class DeezerService {
     return this.deezerSdk.login(perms);
   }
 
+  logout() {
+    return this.deezerSdk.logout();
+  }
+
   getUser(id: number) {
     const path = `/user/${id}`;
     return this.deezerSdk.api<IUser>(path);
@@ -46,9 +50,9 @@ export class DeezerService {
     );
   }
 
-  getRecomendations(type: 'albums' | 'releases' | 'artists' | 'playlists' | 'track' | 'radios' | 'track' ) {
+  getRecomendations(type: 'albums' | 'releases' | 'artists' | 'playlists' | 'tracks' | 'radios' | 'track' ) {
     // https://api.deezer.com/user/5046451522/recommendations/artists
-    return this.deezerSdk.api<IGetItems<IHistory>>(`/user/me/history/${type}`).pipe(
+    return this.deezerSdk.api<IGetItems<IHistory>>(`/user/me/recommendations/${type}`).pipe(
       map(res => res.data),
     );
   }

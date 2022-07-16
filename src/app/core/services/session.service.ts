@@ -38,6 +38,8 @@ export class SessionService {
   getLoginStatus() {
     return this.deezerSdkService.getLoginStatus().pipe(
       map(res => {
+        console.log("login status",res);
+        
         if (res.authResponse) {
           // logged in and connected user, someone you know
           return true;

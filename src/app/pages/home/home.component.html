@@ -10,13 +10,13 @@
 
   <app-artist-banner></app-artist-banner>
 
-  <h2 class="subtitle">Resultados</h2>
+  <h2 class="subtitle">{{title | titlecase}}</h2>
 
   <!-- <pre>
     {{items$ | async | json}}
   </pre> -->
 
-  <div *ngIf="items$ | async as items; else loading" class="song-card-container">
+  <div *ngIf="items$ | async as items; else noResults" class="song-card-container">
     <ng-container *ngFor="let item of items">
       <ng-container [ngSwitch]="item.type">
 
@@ -45,6 +45,6 @@
     </ng-container>
   </div>
 
-  <ng-template #loading>Sin resultados</ng-template>
+  <ng-template #noResults>Sin resultados</ng-template>
 
 </app-page-layout>

@@ -25,6 +25,19 @@ export class DeezerSdkService {
     });
   }
 
+  logout() {
+    return new Observable((observer: Observer<IAuth>) => {
+      DZ.logout((response: IAuth) => {
+        
+        if (response.authResponse) {
+          observer.next(response);
+        } else {
+          observer.error(response);
+        }
+      })
+    });
+  }
+
   getLoginStatus(){
     return new Observable((observer: Observer<ILoginStatus>) => {
       DZ.getLoginStatus((response: ILoginStatus) => {

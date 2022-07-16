@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { DeezerService } from '../../core/services/deezer.service';
-import { ActivatedRoute } from '@angular/router';
-import { of, switchMap, Observable, tap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { of, switchMap, Observable, tap, map } from 'rxjs';
 import { MusicPlayerService } from '../../shared/services/music-player.service';
 import { ContentObserver } from '@angular/cdk/observers';
 import { DeezerSdkService } from '../../core/services/deezer-sdk/deezer-sdk.service';
 import { ItrackItem } from 'src/app/core/interfaces/track.interface';
 
+/**
+ * TODO: Refactor, clean ...
+ */
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -24,33 +27,45 @@ export class HomeComponent implements OnInit {
     artists: this.deezerService.getArtists(),
     albums: this.deezerService.getAlbums(),
     tracks: this.deezerService.getTracks(),
-    radios: of([]),
+    radios: of([]), // TODO: implement
   }
 
-  recomendations$ = this.deezerService.getRecomendations("track");
+  recomendation$ = this.deezerService.getRecomendations("artists").pipe(
+    map(items => items[Math.floor(Math.random()*items.length)])
+  );
+
+  title!: string;
 
   items$ = this.route.queryParams.pipe(
     switchMap(params => {
       const { playlist, search, library } = params;
+      
+      if(search) return this.deezerService.search(search).pipe(tap(_ => this.title="Results"));
+      if(playlist) return this.deezerService.getPlaylist(playlist).pipe(tap(_ => this.title="Playlist"));
+      if(library) return this.libraryMap[library].pipe(tap(_ => this.title=library));
 
-      console.log( { playlist, search, library } );
-      
-      if(search) return this.deezerService.search(search);
-      if(playlist) return this.deezerService.getPlaylist(playlist);
-      if(library) return this.libraryMap[library];
-      
-      return of(undefined)
-    })
+      return this.deezerService.getRecomendations("tracks").pipe(tap(_ => this.title="Recomendations"))
+    }),
   );
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private musicPlayerService: MusicPlayerService,
     private deezerService: DeezerService,
     private deezerSdk: DeezerSdkService,
     private userService: UserService) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    console.log("logout");
+    
+    this.deezerService.logout().subscribe(_ => {
+      console.log({_});
+      this.router.navigate(['/', 'auth'])
+    })
   }
 
   play(item: any) {
