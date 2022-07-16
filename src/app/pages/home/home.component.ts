@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/core/services/user.service';
 import { DeezerService } from '../../core/services/deezer.service';
 import { ActivatedRoute } from '@angular/router';
-import { of, switchMap, Observable } from 'rxjs';
+import { of, switchMap, Observable, tap } from 'rxjs';
 import { MusicPlayerService } from '../../shared/services/music-player.service';
 import { ContentObserver } from '@angular/cdk/observers';
 import { DeezerSdkService } from '../../core/services/deezer-sdk/deezer-sdk.service';
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
       console.log( { playlist, search, library } );
       
       if(search) return this.deezerService.search(search);
-      if(playlist) return this.deezerService.getHistory();
+      if(playlist) return this.deezerService.getPlaylist(playlist);
       if(library) return this.libraryMap[library];
       
       return of(undefined)

@@ -39,6 +39,13 @@ export class DeezerService {
     );
   }
 
+  getPlaylist(id: string){
+    // https://api.deezer.com/playlist/10518802922/tracks
+    return this.deezerSdk.api<IGetItems<ITrack>>(`/playlist/${id}/tracks`).pipe(
+      map(res => res.data),
+    );
+  }
+
   getRecomendations(type: 'albums' | 'releases' | 'artists' | 'playlists' | 'track' | 'radios' | 'track' ) {
     // https://api.deezer.com/user/5046451522/recommendations/artists
     return this.deezerSdk.api<IGetItems<IHistory>>(`/user/me/history/${type}`).pipe(
