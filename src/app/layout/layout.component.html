@@ -1,16 +1,16 @@
-<mat-drawer-container>
-  <mat-drawer 
+<mat-sidenav-container>
+  <mat-sidenav
   [opened]="sidenavOpened$ | async" 
   (closed)="closeSidenav()" 
   [mode]="(['xs'] | breakpoint | async)? 'over':'side'">
     <app-menu></app-menu>
-  </mat-drawer>
+  </mat-sidenav>
 
   <main>
     <router-outlet></router-outlet>
   </main>
 
-</mat-drawer-container>
+</mat-sidenav-container>
 
 <div class="footer">
   <app-music-player></app-music-player>
