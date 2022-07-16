@@ -1,11 +1,14 @@
-<mat-drawer-container autosize>
-  <mat-drawer [opened]="sidenavOpened$ | async" mode="side">
+<mat-drawer-container>
+  <mat-drawer 
+  [opened]="sidenavOpened$ | async" 
+  (closed)="closeSidenav()" 
+  [mode]="(['xs'] | breakpoint | async)? 'over':'side'">
     <app-menu></app-menu>
   </mat-drawer>
 
-  <div>
+  <main>
     <router-outlet></router-outlet>
-  </div>
+  </main>
 
 </mat-drawer-container>
 

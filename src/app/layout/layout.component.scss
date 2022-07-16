@@ -8,7 +8,15 @@ mat-drawer-container {
   flex-grow: 1;
 }
 
+app-menu, main {
+  padding-bottom: 116px;
+}
+
 .footer {
   height: 100px;
   width: 100%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 123;
 }
