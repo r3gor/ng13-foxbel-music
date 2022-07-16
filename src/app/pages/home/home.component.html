@@ -2,7 +2,10 @@
 
   <ng-container header>
     <app-search class="search"></app-search>
-    <div class="user-widget" *ngIf="user$ | async as user">{{ user.name }}</div>
+    <div class="user-widget" *ngIf="user$ | async as user">
+      {{ user.name }}
+      <img class="photo" src="{{user.picture_small}}" alt="">
+    </div>
   </ng-container>
 
   <app-artist-banner></app-artist-banner>
